@@ -1,0 +1,10 @@
+#use thes to reduce image size 
+
+from PIL import Image
+
+colorImage = Image.open("n_combinedddd.png")
+# Convert using adaptive palette of color depth 8
+
+imageWithColorPalette = colorImage.convert("P", palette=Image.AFFINE, colors=256)
+imageWithColorPalette.save('img_AFFINE.png')
+# imageWithColorPalette.show()

@@ -1,0 +1,71 @@
+import cv2
+
+
+class Image:
+    def __init__(self,*args):
+        self.Foreground = Foreground
+        self.Background = Background
+        self.Alpa = Alpa
+        self.Alpa_cam=Alpa_cam
+        self.alpha_Fram=alpha_Fram
+
+    def Panel(self):
+        Foreground = self.Foreground.astype(float)
+        Background = self.Background.astype(float)
+
+        alpha = self.Alpa.astype(float) / 255
+        mask = 1.0 - alpha
+        foreground = cv2.multiply(alpha, Foreground)
+        background = cv2.multiply(mask, Background)
+        self.outImage = cv2.add(foreground, background)
+        cv2.imshow("Panel", self.outImage / 255)
+        cv2.waitKey(0)
+
+    def Cam(self):
+        Foreground = self.outImage.astype(float)
+        Background = self.Background.astype(float)
+
+        Alpa_cam = self.Alpa_cam.astype(float) / 255
+        mask = 1.0 - Alpa_cam
+        foreground = cv2.multiply(Alpa_cam, Foreground)
+        background = cv2.multiply(mask, Background)
+        self.outImage1 = cv2.add(foreground, background)
+
+        cv2.imshow("Cam", self.outImage1 / 255)
+        cv2.waitKey(0)
+
+    def Fram(self):
+        Foreground = self.outImage.astype(float)
+        Background = self.Background.astype(float)
+
+        alpha_Fram = self.alpha_Fram.astype(float) / 255
+        mask = 1.0 - alpha_Fram
+        foreground = cv2.multiply(alpha_Fram, Foreground)
+        background = cv2.multiply(mask, Background)
+        self.outImage1 = cv2.add(foreground, background)
+
+        cv2.imshow("Fram", self.outImage1 / 255)
+        cv2.waitKey(0)
+
+
+
+if __name__ == '__main__':
+    Foreground = cv2.imread("_")
+
+    Background = cv2.imread("_")
+    Background_Cam = cv2.imread("_")
+    Background_Frame = cv2.imread("_")
+
+
+    Alpa = cv2.imread("_")
+    Alpa_cam =cv2.imread("_")
+    alpha_Fram=cv2.imread("_")
+
+
+    Image =  Image(Foreground,Background,Alpa,Alpa_cam,alpha_Fram)
+    Image.Panel()
+    Image.Cam()
+    Image.Fram()
+
+    cv2.destroyAllWindows()
+

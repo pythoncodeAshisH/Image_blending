@@ -1,0 +1,15 @@
+
+import cv2
+import numpy as np  "imge1" 
+_list = ["imge_path" ,"imge_path" ,"imge_path","....n" ]  
+img = cv2.imread('-')
+for image in _list:
+    try:
+        msk = cv2.imread(image, cv2.IMREAD_UNCHANGED)
+        msk_no_alpha = cv2.imread(image)
+        img[np.where(msk[:,:,3]!=0)] = msk_no_alpha[np.where(msk[:,:,3]!=0)]
+
+    except Exception as e:
+        print('error ' + str(e))
+        pass
+cv2.imwrite(r"n_combin.png",img)
